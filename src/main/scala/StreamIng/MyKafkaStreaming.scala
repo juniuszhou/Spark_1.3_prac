@@ -1,10 +1,7 @@
 package main.scala.StreamIng
 
-import com.novus.salat
-import com.novus.salat.global._
 import kafka.serializer.{Decoder, Encoder}
 import kafka.utils.VerifiableProperties
-import org.apache.commons.io.Charsets
 
 import kafka.serializer.StringDecoder
 import org.apache.commons.io.Charsets
@@ -15,6 +12,11 @@ import org.apache.spark.streaming.kafka.KafkaUtils
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import scala.concurrent.ExecutionContext.Implicits.global
 
+
+object MyKafkaStreaming {
+}
+
+  /*
 object Constants {
   val NumPublishers = 5
   val NumAdvertisers = 3
@@ -40,6 +42,7 @@ case class AggregationResult(date: Long, publisher: String, geo: String, imps: I
 
 case class PublisherGeoKey(publisher: String, geo: String)
 
+/*
 class ImpressionLogDecoder(props: VerifiableProperties) extends Decoder[ImpressionLog] {
   def fromBytes(bytes: Array[Byte]): ImpressionLog = {
     salat.grater[ImpressionLog].fromJSON(new String(bytes, Charsets.UTF_8))
@@ -51,8 +54,8 @@ class ImpressionLogEncoder(props: VerifiableProperties) extends Encoder[Impressi
     salat.grater[ImpressionLog].toCompactJSON(impressionLog).getBytes(Charsets.UTF_8)
   }
 }
+*/
 
-object MyKafkaStreaming {
   def main(args: Array[String]) {
     val BatchDuration = Seconds(10)
 
@@ -75,7 +78,7 @@ object MyKafkaStreaming {
     val messages = KafkaUtils.createStream[String, ImpressionLog, StringDecoder, ImpressionLogDecoder](streamingContext, kafkaParams, topics, StorageLevel.MEMORY_AND_DISK)
 
     // to count uniques
-    lazy val hyperLogLog = new HyperLogLogMonoid(12)
+    //lazy val hyperLogLog = new HyperLogLogMonoid(12)
 
     // we filter out non resolved geo (unknown) and map (pub, geo) -> AggLog that will be reduced
     val logsByPubGeo = messages.map(_._2).filter(_.geo != Constants.UnknownGeo).map {
@@ -100,25 +103,16 @@ object MyKafkaStreaming {
     // start rolling!
     streamingContext.start()
 
-    private def saveLogs(logRdd: RDD[(PublisherGeoKey, AggregationLog)])
+     def saveLogs(logRdd: RDD[(PublisherGeoKey, AggregationLog)])
     {
-      val logs = logRdd.map {
-        case (PublisherGeoKey(pub, geo), AggregationLog(timestamp, sumBids, imps, uniquesHll)) =>
-          AggregationResult(new DateTime(timestamp), pub, geo, imps, uniquesHll.estimatedSize.toInt, sumBids / imps)
-      }.collect()
 
-      // save in MongoDB
-      logs.foreach(collection.save(_))
     }
 
-    private def reduceAggregationLogs(aggLog1: AggregationLog, aggLog2: AggregationLog) =
+     def reduceAggregationLogs(aggLog1: AggregationLog, aggLog2: AggregationLog) =
     {
-      aggLog1.copy(
-        timestamp = math.min(aggLog1.timestamp, aggLog2.timestamp),
-        sumBids = aggLog1.sumBids + aggLog2.sumBids,
-        imps = aggLog1.imps + aggLog2.imps,
-        uniquesHll = aggLog1.uniquesHll + aggLog2.uniquesHll
-      )
+
     }
   }
 }
+
+    */

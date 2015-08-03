@@ -32,6 +32,7 @@ In Spark’s execution model, each application gets its own executors, which sta
 
 Integrating Kafka with Spark Streaming
 Overview
+
 In short, Spark Streaming supports Kafka but there are still some rough edges.
 
 A good starting point for me has been the KafkaWordCount example in the Spark code base (Update 2015-03-31: see also DirectKafkaWordCount). When I read this code, however, there were still a couple of open questions left.

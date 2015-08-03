@@ -1,14 +1,16 @@
-class JustScala{
-  val str = "hello"
-}
+
+
+class a {}
+class b extends a {}
+
 object JustScala {
   def main (args: Array[String]) {
 
-    def sum(a: Int, b: Int)(implicit c:Int) : Int = {
-      
-      a + b + c
+
+    def get(): List[b] = {
+      List(new a).asInstanceOf[List[b]]
     }
-    implicit val c = 0
-    println(sum(1,2))
+
+    println(Math.pow(1.1, 10))
   }
 }

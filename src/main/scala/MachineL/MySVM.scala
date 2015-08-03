@@ -8,7 +8,7 @@ import org.apache.spark.mllib.util.MLUtils
 
 object MySVM {
   def main (args: Array[String]) {
-    val dataFilePath = "/home/junius/develop/spark-1.3.0/data/mllib/sample_binary_classification_data.txt"
+    val dataFilePath = "/home/junius/develop/spark-1.4.0/data/mllib/sample_binary_classification_data.txt"
     val sc = new SparkContext("local", "Simple App")
     val data = MLUtils.loadLibSVMFile(sc, dataFilePath).cache()
 

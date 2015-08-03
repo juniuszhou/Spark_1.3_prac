@@ -1,6 +1,8 @@
 package main.scala.StreamIng
 
-import org.apache.spark.Logging
+import org.apache.spark.storage.StorageLevel
+import org.apache.spark.streaming.{Seconds, StreamingContext}
+import org.apache.spark.{SparkContext, SparkConf, Logging}
 
 
 object KafkaWordcount extends Logging {
@@ -22,29 +24,17 @@ object KafkaWordcount extends Logging {
 
     val ssc = new StreamingContext(sparkConf, Seconds(2))
     ssc.checkpoint("checkpoint")
-
+/*
     val lines = ssc.union((1 to numPartitions.toInt).map {
       x =>
-        SparkUtils.createStreamPartition(ssc, KafkaStreamConsumerConfig(x,
-          numPartitions.toInt,
-          numThreads.toInt,
-          group,
-          kafkaZkQuorum,
-          topics.split(","),
-          100000,
-          1024 * 1024,
-          StorageLevel.MEMORY_AND_DISK_SER_2,
-          hbaseZkQuorum,
-          hbaseMonitoringTable,
-          true,
-          false)).map(x => x._2)
+
     })
 
     val words = lines.flatMap(_.split(" "))
     val wordCounts = words.map(x => (x, 1L))
       .reduceByKeyAndWindow(_ + _, _ - _, Minutes(10), Seconds(2), 2)
     wordCounts.print()
-
+*/
     ssc.start()
     ssc.awaitTermination()
   }
