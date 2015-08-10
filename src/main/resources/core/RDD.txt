@@ -33,3 +33,7 @@ to reduce data size in original RDD via a sample function
 also reduce data size and guarantee each RDD 's sample function
 has a different random seed.
 
+#### about lazy persistence
+if you just persist a partition, then other partition will not be computed and persist
+until you use it.
+
