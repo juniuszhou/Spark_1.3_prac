@@ -1,5 +1,6 @@
 package main.scala.StreamIng
 
+/*
 import kafka.serializer.{Decoder, Encoder}
 import kafka.utils.VerifiableProperties
 
@@ -11,7 +12,7 @@ import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming.kafka.KafkaUtils
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import scala.concurrent.ExecutionContext.Implicits.global
-
+*/
 
 object MyKafkaStreaming {
 }

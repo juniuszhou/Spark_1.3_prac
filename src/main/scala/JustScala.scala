@@ -7,10 +7,8 @@ object JustScala {
   def main (args: Array[String]) {
 
 
-    def get(): List[b] = {
-      List(new a).asInstanceOf[List[b]]
-    }
-
-    println(Math.pow(1.1, 10))
+    val ll = Seq(1,2,3,4)
+    val res = ll.zipWithIndex
+    res.foreach(println)
   }
 }
