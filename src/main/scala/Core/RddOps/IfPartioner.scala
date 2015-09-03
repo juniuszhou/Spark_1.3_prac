@@ -9,7 +9,7 @@ import org.apache.spark.SparkContext
 object IfPartioner {
   def main (args: Array[String]) {
     val sc = new SparkContext("local", "Simple App")
-    val rdd =  RddGenerator.GeneratePairRDD(sc)
+    val rdd =  RddGenerator2.GeneratePairRDD(sc)
 
     // for rdd generated from collections. there are several partitions for
     // parallelism, but there is no partitioner. partitioner can put the data with

@@ -37,3 +37,11 @@ has a different random seed.
 if you just persist a partition, then other partition will not be computed and persist
 until you use it.
 
+
+#### why there is no api to just give a normal rdd instead of pair rdd a partitioner.
+if the value appear several times in different rdd partition. then we can use
+map(x => (x,1L)).reduceByKey(_ + _) then just store the value once.
+and tuple 's second value can indicate how many times the value exist.
+so
+
+##

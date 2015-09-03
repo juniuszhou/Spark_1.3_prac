@@ -9,7 +9,7 @@ import org.apache.spark.SparkContext
 object MyGroupByKey {
   def main (args: Array[String]) {
     val sc = new SparkContext("local", "Simple App")
-    val rdd =  RddGenerator.GeneratePairRDD(sc)
+    val rdd =  RddGenerator2.GeneratePairRDD(sc)
 
     val rdd3 = rdd.groupByKey()
     println(rdd3.toDebugString)
