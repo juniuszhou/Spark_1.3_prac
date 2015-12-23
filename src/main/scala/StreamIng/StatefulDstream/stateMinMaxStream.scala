@@ -1,7 +1,7 @@
-package main.scala.StreamIng
+package StreamIng.StatefulDstream
 
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.{HashPartitioner, SparkConf}
+import org.apache.spark.SparkConf
 import org.apache.spark.streaming._
 
 
@@ -14,7 +14,7 @@ object stateMinMaxStream {
     Logger.getRootLogger.setLevel(Level.WARN)
 
     // Create the context with a 1 second batch size
-    val ssc = new StreamingContext(sparkConf, Seconds(10))
+    val ssc = new StreamingContext(sparkConf, Seconds(2))
 
     var min = Long.MaxValue
     var max = Long.MinValue
@@ -30,7 +30,6 @@ object stateMinMaxStream {
         println("%%%%%%%%%%%%%%%%%%%%%%")
         println("min is ", min,"l is",l)
       })
-
     })
 
     nums.reduce((l1, l2) => Math.max(l1, l2)).foreachRDD(rdd => {

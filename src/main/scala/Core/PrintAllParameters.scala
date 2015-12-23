@@ -1,5 +1,6 @@
 package main.scala.Core
 
+import MyUtil.SetLogLevel
 import org.apache.spark.util.Utils
 import org.apache.spark.{SparkContext, SparkConf}
 
@@ -8,6 +9,7 @@ import org.apache.spark.{SparkContext, SparkConf}
  */
 object PrintAllParameters {
   def main(args: Array[String]) {
+    SetLogLevel.setLogLevels()
 
     val sc = new SparkContext("local", "Simple App")
 

@@ -1,6 +1,6 @@
 package main.scala.Core
 
-import main.scala.RddGenerator
+import MyUtil.RddGenerator
 import org.apache.spark.SparkContext
 
 /**

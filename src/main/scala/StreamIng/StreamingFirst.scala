@@ -20,7 +20,7 @@ import org.apache.spark.streaming.dstream.DStream
 object StreamingFirst {
 
   def printOutputRDD(count: DStream[(String, Int)]){
-    count.foreachRDD(rdd =>  { rdd.foreach(u => println( u._1 + " " + u._2))
+    count.foreachRDD(rdd =>  { rdd.collect().foreach(u => println(u._1 + " " + u._2))
       println(" rdd split _________________")
 
     })
@@ -35,11 +35,14 @@ object StreamingFirst {
     val port : Int = 9999
     // socketTextStream just connect to this port and then get data.
     //So you must must must run nc -lk 9999 before run this program.
-    val lines = sc.socketTextStream("localhost", port, StorageLevel.MEMORY_ONLY_SER).cache
+    val lines = sc.socketTextStream("127.0.0.1", port, StorageLevel.MEMORY_ONLY_SER).cache
 
+    //lines.foreachRDD(rdd => rdd.collect().foreach(println))
+    //*
     val words = lines.flatMap(_.split(" "))
     val counts  = words.map(x => (x, 1)).reduceByKey(_ + _)
     printOutputRDD(counts)
+    //*/
     //counts.print()
     sc.start()
     sc.awaitTermination()

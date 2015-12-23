@@ -1,8 +1,7 @@
-package main.scala.StreamIng
+package StreamIng.KafkaSource
 
-import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming.{Seconds, StreamingContext}
-import org.apache.spark.{SparkContext, SparkConf, Logging}
+import org.apache.spark.{Logging, SparkConf, SparkContext}
 
 
 object KafkaWordcount extends Logging {

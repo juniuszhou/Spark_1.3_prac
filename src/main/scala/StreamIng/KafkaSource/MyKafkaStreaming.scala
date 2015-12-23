@@ -1,4 +1,4 @@
-package main.scala.StreamIng
+package StreamIng.KafkaSource
 
 /*
 import kafka.serializer.{Decoder, Encoder}

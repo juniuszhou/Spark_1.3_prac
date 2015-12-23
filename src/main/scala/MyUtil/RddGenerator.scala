@@ -1,4 +1,4 @@
-package main.scala
+package MyUtil
 
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
