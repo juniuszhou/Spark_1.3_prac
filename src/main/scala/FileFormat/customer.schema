@@ -1,0 +1,4 @@
+message m {
+  optional int64 id;
+  optional binary name;
+}
