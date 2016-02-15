@@ -23,8 +23,9 @@ object RedisAgg {
 
     val sc = new SparkContext(sparkConf)
 
-    Timer(6000){
+    Timer(6000) {
       println("_______________")
+      /*
       val keysRdd = sc.fromRedisKeyPattern(("localhost", 6379), "*", 2)
       val kvRdd = keysRdd.getKV()
       val hotelIds = kvRdd.map(str => {
@@ -48,9 +49,10 @@ object RedisAgg {
       sc.toRedisKV(lowestPriceRdd, ("localhost", 6379))
 
     }
+    */
+      while (true) {
 
-    while(true){
-
+      }
     }
   }
 }

@@ -17,7 +17,7 @@ object DirectKafkaStreamCassandra {
       .set("spark.streaming.receiver.writeAheadLog.enable", "true")
       .set("spark.cassandra.connection.host", "10.2.12.115")
 
-    /** Creates the keyspace and table in Cassandra. */
+    /** Creates the keyspace and table in Cassandra.
     CassandraConnector(sparkConf).withSessionDo { session =>
       session.execute(s"CREATE KEYSPACE IF NOT EXISTS lpas WITH REPLICATION = {'class': 'SimpleStrategy', 'replication_factor': 2 }")
       session.execute(s"CREATE TABLE IF NOT EXISTS lpas.LpasPricingAnalysis (hotelId TEXT PRIMARY KEY, available TEXT)")
@@ -63,5 +63,7 @@ object DirectKafkaStreamCassandra {
 
     ssc.start()
     ssc.awaitTermination()
+
+      */
   }
 }

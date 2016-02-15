@@ -8,15 +8,15 @@ import org.apache.spark.sql.{SQLContext, DataFrame}
 object MyDataFrame {
   def ScanDataFrame(data: DataFrame ): Unit = {
     //print column names
-    data.columns.foreach(colName => println("column name is: ") + colName)
+    data.columns.foreach(colName => println("column name is: "))
 
     //print all data in first column.
-    data.foreach(row => println(row.getString(0)))
+    //data.foreach(row => println(row.getString(0)))
     // data.foreach(row => row.get)
   }
 
   def ScanRdd(data: RDD[_]): Unit = {
-    data.foreach(println)
+    // data.foreach(println)
   }
 
   def main (args: Array[String]) {
@@ -34,6 +34,6 @@ object MyDataFrame {
 
 
     ScanDataFrame(frame)
-    ScanRdd(rdd)
+    //ScanRdd(rdd)
   }
 }
