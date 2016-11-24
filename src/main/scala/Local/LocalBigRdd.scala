@@ -11,6 +11,7 @@ import org.apache.spark.SparkContext
 object LocalBigRdd {
   def main(args: Array[String]) {
     val sc = new SparkContext("local[4]", "Simple App")
+    sc.parallelize(List(1, 2)).foreach(println)
 
     val random = new Random()
     val dataLen = 1000
